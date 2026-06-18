@@ -7,6 +7,9 @@ import { ChatRoom } from '@/components/ChatRoom'
 import { DeploymentStatus } from '@/components/DeploymentStatus'
 import { AgentPanel } from '@/components/AgentPanel'
 import { FleetOverview } from '@/components/FleetOverview'
+import { RobotCatalog } from '@/components/RobotCatalog'
+import { ArtifactViewer } from '@/components/ArtifactViewer'
+import { OpsControls } from '@/components/OpsControls'
 import { delay } from '@/lib/utils'
 
 export default function Home() {
@@ -14,9 +17,16 @@ export default function Home() {
   const [stage, setStage] = useState<WorkflowStage>('idle')
   const [isRunning, setIsRunning] = useState(false)
   const [approved, setApproved] = useState(false)
+
   const [siteAssessment, setSiteAssessment] = useState<Record<string, unknown> | null>(null)
   const [fleetConfig, setFleetConfig] = useState<Record<string, unknown> | null>(null)
   const [safetyReview, setSafetyReview] = useState<Record<string, unknown> | null>(null)
+  const [deploymentPackage, setDeploymentPackage] = useState<Record<string, unknown> | null>(null)
+
+  const [catalogOpen, setCatalogOpen] = useState(false)
+  const [artifactViewerOpen, setArtifactViewerOpen] = useState(false)
+  const [artifactTitle, setArtifactTitle] = useState('')
+  const [artifactData, setArtifactData] = useState<Record<string, unknown> | null>(null)
 
   const addMessages = useCallback((newMessages: AgentMessage[]) => {
     setMessages((prev) => [...prev, ...newMessages])
@@ -39,6 +49,7 @@ export default function Home() {
     setSiteAssessment(null)
     setFleetConfig(null)
     setSafetyReview(null)
+    setDeploymentPackage(null)
 
     const triggerMsg: AgentMessage = {
       id: `msg-${Date.now()}`,
@@ -51,21 +62,18 @@ export default function Home() {
     addMessages([triggerMsg])
     await delay(1500)
 
-    // Stage 1: Site Assessment
     setStage('site-assessment')
     const sa = await callWorkflow('site-assessment')
     setSiteAssessment(sa.artifact)
     addMessages(sa.messages)
     await delay(2000)
 
-    // Stage 2: Fleet Configuration
     setStage('fleet-configuration')
     const fc = await callWorkflow('fleet-configuration', { siteAssessment: sa.artifact })
     setFleetConfig(fc.artifact)
     addMessages(fc.messages)
     await delay(2000)
 
-    // Stage 3: Safety Review (will VETO)
     setStage('safety-review')
     const sr = await callWorkflow('safety-review', {
       siteAssessment: sa.artifact,
@@ -74,7 +82,6 @@ export default function Home() {
     addMessages(sr.messages)
     await delay(2500)
 
-    // Stage 4: Veto + Revision
     setStage('safety-veto')
     await delay(1500)
     setStage('revision')
@@ -82,7 +89,6 @@ export default function Home() {
     addMessages(rev.messages)
     await delay(2000)
 
-    // Stage 5: Safety Re-review (will PASS)
     setStage('safety-review')
     const sr2 = await callWorkflow('safety-review-revision', {
       siteAssessment: sa.artifact,
@@ -92,7 +98,6 @@ export default function Home() {
     addMessages(sr2.messages)
     await delay(2000)
 
-    // Stage 6: Launch Package
     setStage('safety-cleared')
     await delay(500)
     setStage('launch-package')
@@ -101,10 +106,10 @@ export default function Home() {
       fleetConfig: fc.artifact,
       safetyReview: sr2.artifact,
     })
+    setDeploymentPackage(lp.artifact)
     addMessages(lp.messages)
     await delay(1000)
 
-    // Stage 7: Awaiting approval
     setStage('awaiting-approval')
     setIsRunning(false)
   }, [addMessages])
@@ -122,6 +127,33 @@ export default function Home() {
     setApproved(true)
   }
 
+  const handleReject = () => {
+    const rejectMsg: AgentMessage = {
+      id: `msg-${Date.now()}`,
+      agent: 'ops-manager',
+      content: `**Deployment REJECTED** — requesting additional changes.\n\n@launch-coordinator Please add contingency plan for charger dock failure scenario. What happens if CD-1 goes offline during peak shift?\n\nAlso need clarification on ramp R1 monitoring protocol for loaded transits.`,
+      timestamp: new Date().toISOString(),
+      type: 'message',
+      mentioning: ['launch-coordinator'],
+    }
+    addMessages([rejectMsg])
+  }
+
+  const handleViewArtifact = (type: 'site' | 'fleet' | 'safety' | 'package') => {
+    const map = {
+      site: { title: 'Site Assessment — Acme Motors Plant 4', data: siteAssessment },
+      fleet: { title: 'Fleet Configuration — 8x HeavyLift-X200', data: fleetConfig },
+      safety: { title: 'Safety Review — Final Pass', data: safetyReview },
+      package: { title: 'Deployment Package — Ready for Approval', data: deploymentPackage },
+    }
+    const item = map[type]
+    if (item.data) {
+      setArtifactTitle(item.title)
+      setArtifactData(item.data)
+      setArtifactViewerOpen(true)
+    }
+  }
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       {/* Header */}
@@ -137,10 +169,26 @@ export default function Home() {
             <p className="text-[10px] text-gray-500">Multi-Agent AMR Deployment Platform</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="text-right">
-            <p className="text-[10px] text-gray-500">Powered by</p>
-            <p className="text-[10px] text-gray-400">Band + Featherless AI</p>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <a
+              href="https://band.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-800/50 border border-gray-700/50 hover:border-gray-500 transition-colors"
+            >
+              <div className="w-2 h-2 rounded-full bg-green-500" />
+              <span className="text-[10px] text-gray-400">Band</span>
+            </a>
+            <a
+              href="https://featherless.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-800/50 border border-gray-700/50 hover:border-gray-500 transition-colors"
+            >
+              <div className="w-2 h-2 rounded-full bg-purple-500" />
+              <span className="text-[10px] text-gray-400">Featherless</span>
+            </a>
           </div>
           <button
             onClick={runFullWorkflow}
@@ -158,29 +206,18 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Left sidebar - Status */}
+        {/* Left sidebar */}
         <aside className="w-64 border-r border-fleet-border bg-fleet-panel/30 p-4 overflow-y-auto scrollbar-thin space-y-6">
           <DeploymentStatus stage={stage} />
+          <OpsControls
+            stage={stage}
+            approved={approved}
+            onApprove={handleApprove}
+            onReject={handleReject}
+            onViewArtifact={handleViewArtifact}
+            onOpenCatalog={() => setCatalogOpen(true)}
+          />
           <AgentPanel />
-          {stage === 'awaiting-approval' && !approved && (
-            <div className="space-y-2">
-              <h3 className="text-xs font-semibold text-yellow-400 uppercase tracking-wider">
-                Action Required
-              </h3>
-              <button
-                onClick={handleApprove}
-                className="w-full py-2 rounded-lg bg-green-600 hover:bg-green-500 text-white text-sm font-medium transition-colors"
-              >
-                Approve Deployment
-              </button>
-            </div>
-          )}
-          {approved && (
-            <div className="p-3 rounded-lg bg-green-950/30 border border-green-800/50">
-              <p className="text-xs text-green-400 font-medium">Deployment Approved</p>
-              <p className="text-[10px] text-green-600 mt-1">Infrastructure prep begins Day 1</p>
-            </div>
-          )}
         </aside>
 
         {/* Center - Chat Room */}
@@ -188,11 +225,20 @@ export default function Home() {
           <ChatRoom messages={messages} isRunning={isRunning} />
         </main>
 
-        {/* Right sidebar - Fleet Telemetry */}
+        {/* Right sidebar */}
         <aside className="w-72 bg-fleet-panel/30 p-4 overflow-y-auto scrollbar-thin">
           <FleetOverview />
         </aside>
       </div>
+
+      {/* Modals */}
+      <RobotCatalog isOpen={catalogOpen} onClose={() => setCatalogOpen(false)} />
+      <ArtifactViewer
+        isOpen={artifactViewerOpen}
+        onClose={() => setArtifactViewerOpen(false)}
+        title={artifactTitle}
+        data={artifactData}
+      />
     </div>
   )
 }
