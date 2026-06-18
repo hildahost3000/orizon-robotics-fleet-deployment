@@ -118,7 +118,7 @@ llm = ChatOpenAI(
 
 ## Demo Workflow
 
-The golden-path demo shows the complete 8-step coordination:
+### Deployment Mode (8-step coordination)
 
 1. **Ops Manager triggers** → `@site-assessor` with Acme Motors factory spec
 2. **Site Assessor analyzes** → flags Wi-Fi dead zone in Zone C NE, ramp gradient warning
@@ -130,6 +130,17 @@ The golden-path demo shows the complete 8-step coordination:
 8. **Ops Manager approves** → deployment authorized
 
 **The 5-15 day manual process becomes a ~10 minute coordinated agent workflow.**
+
+### Fleet Ops Mode (Interactive Robot Simulator)
+
+Switch to **Fleet Ops** mode to control 6 robots in real-time:
+
+- **Adjust conditions** — battery level, speed, payload, zone assignment, status
+- **Trigger events** — toggle obstacles, WiFi disconnections, error states
+- **Watch robots communicate** — each change generates realistic robot-to-robot messages via Featherless AI
+- **See fleet coordination** — robots reassign tasks, reroute around obstacles, manage charging priorities
+
+This demonstrates what happens in production when fleet conditions change — robots in a Band chat room coordinate autonomously.
 
 ---
 

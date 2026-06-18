@@ -45,6 +45,9 @@ venv/
 .venv/
 vectorstore/
 
+# Study materials (cloned repos for reference)
+_study/
+
 # Private hackathon documents (planning & strategy - not for public repo)
 PRD.md
 guide.txt
@@ -53,4 +56,5 @@ HACKATHON_PROJECT_IDEAS.md
 ROBOTICS_AND_STRATEGY.md
 current submission.txt
 PRIVATE_DOCS.md
+SUBMISSION_CHECKLIST.md
 agent-transcripts/
