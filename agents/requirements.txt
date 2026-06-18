@@ -1,0 +1,14 @@
+# Band SDK with all framework adapters
+band-sdk[langgraph,crewai,pydantic-ai,anthropic]
+
+# LLM providers
+langchain-openai
+openai
+
+# Vector store for RAG
+chromadb
+sentence-transformers
+
+# Utilities
+python-dotenv
+pydantic>=2.0

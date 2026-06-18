@@ -1,0 +1,19 @@
+# Band Agent Configuration
+# Copy to agent_config.yaml and fill in your agent UUIDs + API keys
+# Register agents at https://app.band.ai/agents → New Agent → External Agent
+
+site-assessor:
+  agent_id: "your-site-assessor-uuid"
+  api_key: "your-site-assessor-api-key"
+
+fleet-configurator:
+  agent_id: "your-fleet-configurator-uuid"
+  api_key: "your-fleet-configurator-api-key"
+
+safety-reviewer:
+  agent_id: "your-safety-reviewer-uuid"
+  api_key: "your-safety-reviewer-api-key"
+
+launch-coordinator:
+  agent_id: "your-launch-coordinator-uuid"
+  api_key: "your-launch-coordinator-api-key"
