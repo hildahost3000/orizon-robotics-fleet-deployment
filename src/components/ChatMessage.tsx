@@ -41,7 +41,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
             </span>
           )}
           {message.type === 'event' && (
-            <span className="text-[10px] text-blue-400 bg-blue-950 px-1.5 py-0.5 rounded">
+            <span className="text-[10px] text-fleet-accent-soft bg-fleet-veto/30 px-1.5 py-0.5 rounded">
               event
             </span>
           )}
@@ -55,7 +55,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
         {message.mentioning && message.mentioning.length > 0 && (
           <div className="flex gap-1 mt-2">
             {message.mentioning.map((m) => (
-              <span key={m} className="text-[10px] text-blue-400 bg-blue-950/50 px-1.5 py-0.5 rounded">
+              <span key={m} className="text-[10px] text-fleet-accent-soft bg-fleet-veto/30/50 px-1.5 py-0.5 rounded">
                 @{AGENTS[m].name}
               </span>
             ))}
@@ -71,7 +71,7 @@ function renderContent(content: string): React.ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith('@')) {
       return (
-        <span key={i} className="text-blue-400 font-medium">
+        <span key={i} className="text-fleet-accent-soft font-medium">
           {part}
         </span>
       )

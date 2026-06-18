@@ -128,7 +128,7 @@ export const AGENTS: Record<AgentRole, AgentConfig> = {
     model: 'Qwen/Qwen2.5-32B-Instruct',
     description: 'Parses deployment requests and produces structured site assessments with infrastructure flags',
     avatar: 'SA',
-    color: '#3b82f6',
+    color: '#0d9488',
   },
   'fleet-configurator': {
     role: 'fleet-configurator',
@@ -137,7 +137,7 @@ export const AGENTS: Record<AgentRole, AgentConfig> = {
     model: 'meta-llama/Meta-Llama-3.1-70B-Instruct',
     description: 'Selects robot models from catalog via RAG, generates fleet deployment configuration',
     avatar: 'FC',
-    color: '#8b5cf6',
+    color: '#b45309',
   },
   'safety-reviewer': {
     role: 'safety-reviewer',
@@ -146,7 +146,7 @@ export const AGENTS: Record<AgentRole, AgentConfig> = {
     model: 'deepseek-ai/DeepSeek-R1-0528',
     description: 'Reviews configurations against ISO 3691-4 safety standards. Holds VETO authority.',
     avatar: 'SR',
-    color: '#ef4444',
+    color: '#9b1b30',
   },
   'launch-coordinator': {
     role: 'launch-coordinator',
@@ -155,7 +155,7 @@ export const AGENTS: Record<AgentRole, AgentConfig> = {
     model: 'Qwen/Qwen2.5-72B-Instruct',
     description: 'Synthesizes all artifacts into deployment-ready package for human approval',
     avatar: 'LC',
-    color: '#10b981',
+    color: '#2d6a4f',
   },
   'ops-manager': {
     role: 'ops-manager',

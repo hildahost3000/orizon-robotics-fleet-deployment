@@ -39,7 +39,7 @@ export function RobotCatalog({ isOpen, onClose }: RobotCatalogProps) {
                 onClick={() => setSelected(selected === idx ? null : idx)}
                 className={`p-4 rounded-xl border cursor-pointer transition-all ${
                   selected === idx
-                    ? 'border-fleet-accent bg-blue-950/20 shadow-lg shadow-blue-500/10'
+                    ? 'border-fleet-accent bg-fleet-accent/20'
                     : 'border-gray-800 bg-gray-900/50 hover:border-gray-600'
                 }`}
               >

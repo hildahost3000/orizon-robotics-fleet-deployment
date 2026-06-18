@@ -16,12 +16,12 @@ import { delay } from '@/lib/utils'
 type AppMode = 'deployment' | 'fleet-ops'
 
 const ROBOT_COLORS: Record<string, string> = {
-  'AMR-001': '#3b82f6',
-  'AMR-002': '#8b5cf6',
-  'AMR-003': '#ef4444',
-  'AMR-004': '#10b981',
-  'AMR-005': '#f59e0b',
-  'AMR-006': '#ec4899',
+  'AMR-001': '#0d9488',
+  'AMR-002': '#b45309',
+  'AMR-003': '#9b1b30',
+  'AMR-004': '#2d6a4f',
+  'AMR-005': '#78716c',
+  'AMR-006': '#a16207',
 }
 
 export default function Home() {
@@ -232,7 +232,7 @@ export default function Home() {
       {/* Header */}
       <header className="flex items-center justify-between px-6 py-3 border-b border-fleet-border bg-fleet-panel/80 backdrop-blur-sm">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-fleet-accent flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
             </svg>
@@ -250,7 +250,7 @@ export default function Home() {
               onClick={() => setMode('deployment')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 mode === 'deployment'
-                  ? 'bg-blue-600 text-white shadow-sm'
+                  ? 'bg-fleet-accent text-white shadow-sm'
                   : 'text-gray-400 hover:text-gray-200'
               }`}
             >
@@ -260,7 +260,7 @@ export default function Home() {
               onClick={() => setMode('fleet-ops')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 mode === 'fleet-ops'
-                  ? 'bg-purple-600 text-white shadow-sm'
+                  ? 'bg-fleet-accent-soft text-white shadow-sm'
                   : 'text-gray-400 hover:text-gray-200'
               }`}
             >
@@ -284,7 +284,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-800/50 border border-gray-700/50 hover:border-gray-500 transition-colors"
             >
-              <div className="w-2 h-2 rounded-full bg-purple-500" />
+              <div className="w-2 h-2 rounded-full bg-fleet-accent-soft" />
               <span className="text-[10px] text-gray-400">Featherless</span>
             </a>
           </div>
@@ -296,7 +296,7 @@ export default function Home() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 isRunning
                   ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-blue-500/20'
+                  : 'bg-fleet-accent text-white hover:bg-fleet-veto shadow-lg shadow-fleet-accent/20'
               }`}
             >
               {isRunning ? 'Workflow Running...' : stage === 'idle' ? 'Deploy Fleet' : 'Restart Workflow'}
@@ -375,7 +375,7 @@ function FleetChatRoom({
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-2 px-4 py-3 border-b border-fleet-border bg-fleet-panel/50">
-        <div className={`w-2 h-2 rounded-full ${isFleetMode ? 'bg-purple-500' : 'bg-green-500'} animate-pulse`} />
+        <div className={`w-2 h-2 rounded-full ${isFleetMode ? 'bg-fleet-accent-soft' : 'bg-fleet-success'} animate-pulse`} />
         <h2 className="text-sm font-semibold text-gray-200">{channelName}</h2>
         <span className="text-[10px] text-gray-500 ml-auto">{channelLabel}</span>
       </div>
@@ -411,9 +411,9 @@ function FleetChatRoom({
         {isRunning && (
           <div className="flex items-center gap-2 p-3 text-gray-500 text-sm">
             <div className="flex gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0ms' }} />
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '150ms' }} />
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '300ms' }} />
+              <div className="w-1.5 h-1.5 rounded-full bg-fleet-accent animate-bounce" style={{ animationDelay: '0ms' }} />
+              <div className="w-1.5 h-1.5 rounded-full bg-fleet-accent animate-bounce" style={{ animationDelay: '150ms' }} />
+              <div className="w-1.5 h-1.5 rounded-full bg-fleet-accent animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
             <span>{isFleetMode ? 'Robots communicating...' : 'Agent processing...'}</span>
           </div>
@@ -483,7 +483,7 @@ function FleetMessage({ message, isFleetMode }: { message: AgentMessage; isFleet
             </span>
           )}
           {message.type === 'event' && (
-            <span className="text-[10px] text-blue-400 bg-blue-950 px-1.5 py-0.5 rounded">
+            <span className="text-[10px] text-fleet-accent-soft bg-fleet-veto/30 px-1.5 py-0.5 rounded">
               status
             </span>
           )}
@@ -504,7 +504,7 @@ function renderContent(content: string): React.ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith('@')) {
       return (
-        <span key={i} className="text-blue-400 font-medium">
+        <span key={i} className="text-fleet-accent-soft font-medium">
           {part}
         </span>
       )

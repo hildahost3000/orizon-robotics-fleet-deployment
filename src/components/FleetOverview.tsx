@@ -50,7 +50,7 @@ export function FleetOverview() {
           <p className="text-[10px] text-gray-500 font-medium">ALERTS</p>
           {alerts.map((alert, i) => (
             <div key={i} className={`text-[10px] p-1.5 rounded ${
-              alert.severity === 'warning' ? 'bg-yellow-950/30 text-yellow-300' : 'bg-blue-950/30 text-blue-300'
+              alert.severity === 'warning' ? 'bg-yellow-950/30 text-yellow-300' : 'bg-fleet-veto/20 text-fleet-accent-soft'
             }`}>
               <span className="font-mono">{alert.robot_id}</span>: {alert.message}
             </div>

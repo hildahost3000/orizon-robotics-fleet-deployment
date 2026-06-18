@@ -62,7 +62,7 @@ export function FleetSimulator({ onEvent, isProcessing }: FleetSimulatorProps) {
           <span className="text-[9px] px-1.5 py-0.5 rounded bg-green-950/50 text-green-400 border border-green-800/30">
             {activeCount}/6 active
           </span>
-          <span className="text-[9px] px-1.5 py-0.5 rounded bg-blue-950/50 text-blue-400 border border-blue-800/30">
+          <span className="text-[9px] px-1.5 py-0.5 rounded bg-fleet-veto/30 text-fleet-accent-soft border border-fleet-border">
             avg {avgBattery}%
           </span>
         </div>
@@ -73,13 +73,13 @@ export function FleetSimulator({ onEvent, isProcessing }: FleetSimulatorProps) {
       </p>
 
       {isProcessing && (
-        <div className="flex items-center gap-2 py-1.5 px-2 rounded bg-blue-950/30 border border-blue-800/30">
+        <div className="flex items-center gap-2 py-1.5 px-2 rounded bg-fleet-veto/20 border border-fleet-border">
           <div className="flex gap-0.5">
-            <div className="w-1 h-1 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: '0ms' }} />
-            <div className="w-1 h-1 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: '100ms' }} />
-            <div className="w-1 h-1 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: '200ms' }} />
+            <div className="w-1 h-1 rounded-full bg-fleet-accent-soft animate-bounce" style={{ animationDelay: '0ms' }} />
+            <div className="w-1 h-1 rounded-full bg-fleet-accent-soft animate-bounce" style={{ animationDelay: '100ms' }} />
+            <div className="w-1 h-1 rounded-full bg-fleet-accent-soft animate-bounce" style={{ animationDelay: '200ms' }} />
           </div>
-          <span className="text-[10px] text-blue-400">Robots communicating...</span>
+          <span className="text-[10px] text-fleet-accent-soft">Robots communicating...</span>
         </div>
       )}
 
@@ -177,7 +177,7 @@ function RobotCard({ robot, expanded, onToggle, onCommit, onLocalUpdate, disable
               onMouseUp={() => onCommit(robot.robot_id, 'battery_pct', batteryRef.current)}
               onTouchEnd={() => onCommit(robot.robot_id, 'battery_pct', batteryRef.current)}
               disabled={disabled}
-              className="w-full h-1.5 rounded-full appearance-none bg-gray-700 accent-blue-500 cursor-pointer disabled:opacity-50"
+              className="w-full h-1.5 rounded-full appearance-none bg-gray-700 accent-fleet-accent cursor-pointer disabled:opacity-50"
             />
           </div>
 
@@ -200,7 +200,7 @@ function RobotCard({ robot, expanded, onToggle, onCommit, onLocalUpdate, disable
               onMouseUp={() => onCommit(robot.robot_id, 'speed_ms', speedRef.current)}
               onTouchEnd={() => onCommit(robot.robot_id, 'speed_ms', speedRef.current)}
               disabled={disabled}
-              className="w-full h-1.5 rounded-full appearance-none bg-gray-700 accent-blue-500 cursor-pointer disabled:opacity-50"
+              className="w-full h-1.5 rounded-full appearance-none bg-gray-700 accent-fleet-accent cursor-pointer disabled:opacity-50"
             />
           </div>
 
@@ -223,7 +223,7 @@ function RobotCard({ robot, expanded, onToggle, onCommit, onLocalUpdate, disable
               onMouseUp={() => onCommit(robot.robot_id, 'payload_kg', payloadRef.current)}
               onTouchEnd={() => onCommit(robot.robot_id, 'payload_kg', payloadRef.current)}
               disabled={disabled}
-              className="w-full h-1.5 rounded-full appearance-none bg-gray-700 accent-blue-500 cursor-pointer disabled:opacity-50"
+              className="w-full h-1.5 rounded-full appearance-none bg-gray-700 accent-fleet-accent cursor-pointer disabled:opacity-50"
             />
           </div>
 
@@ -234,7 +234,7 @@ function RobotCard({ robot, expanded, onToggle, onCommit, onLocalUpdate, disable
               value={robot.status}
               onChange={(e) => onCommit(robot.robot_id, 'status', e.target.value)}
               disabled={disabled}
-              className="w-full text-xs bg-gray-800 border border-gray-700 rounded px-2 py-1.5 text-gray-300 focus:border-blue-500 focus:outline-none disabled:opacity-50"
+              className="w-full text-xs bg-gray-800 border border-gray-700 rounded px-2 py-1.5 text-gray-300 focus:border-fleet-accent focus:outline-none disabled:opacity-50"
             >
               <option value="active">Active</option>
               <option value="charging">Charging</option>
@@ -255,7 +255,7 @@ function RobotCard({ robot, expanded, onToggle, onCommit, onLocalUpdate, disable
                   disabled={disabled}
                   className={`py-1 rounded text-[10px] font-medium transition-colors disabled:opacity-50 ${
                     robot.zone === z
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-fleet-accent text-white'
                       : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
                   }`}
                 >

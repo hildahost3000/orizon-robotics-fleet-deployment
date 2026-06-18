@@ -41,9 +41,9 @@ export function ChatRoom({ messages, isRunning }: ChatRoomProps) {
         {isRunning && (
           <div className="flex items-center gap-2 p-3 text-gray-500 text-sm">
             <div className="flex gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0ms' }} />
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '150ms' }} />
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '300ms' }} />
+              <div className="w-1.5 h-1.5 rounded-full bg-fleet-accent animate-bounce" style={{ animationDelay: '0ms' }} />
+              <div className="w-1.5 h-1.5 rounded-full bg-fleet-accent animate-bounce" style={{ animationDelay: '150ms' }} />
+              <div className="w-1.5 h-1.5 rounded-full bg-fleet-accent animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
             <span>Agent processing...</span>
           </div>
