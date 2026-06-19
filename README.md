@@ -226,15 +226,9 @@ This project uses authentic robotics and fleet operations terminology:
 
 ## Future Vision
 
-> I'm building a robotics company that designs custom AMRs with FOC-controlled actuators (STM32-based motor drivers → custom wheels and robotic arm DOFs). As I deploy these robots to client sites, the coordination problem this hackathon project solves will be my actual operational workflow.
+> I'm working toward Orizon Robotics — custom AMRs with FOC-controlled actuators (STM32-based motor drivers → custom wheels and robotic arm DOFs). This hackathon project is a working prototype: a training exercise and mental model for how I want client deployments to flow — assess, configure, veto, launch — before the hardware is ready.
 >
-> Today's demo uses simulated fleet data. Tomorrow, the same Band-connected agents will:
-> - Receive real telemetry from ROS2 nodes via MQTT → Band bridge
-> - Trigger SLAM re-mapping when floor plan changes
-> - Coordinate firmware OTA updates across the fleet
-> - Interface with real WMS/MES systems (Manhattan Associates, SAP EWM)
->
-> This hackathon submission is the prototype of the ops layer for my robotics company.
+> Today's demo uses simulated fleet data. The coordination pattern is what I'm validating — building the muscle memory now so the real ops layer is smoother later. When robots ship to client sites, I'd want this same workflow shape; from there, connecting live ROS2 telemetry, SLAM re-mapping, and fleet firmware updates is the natural next step — not something this MVP claims to do yet.
 
 ---
 
