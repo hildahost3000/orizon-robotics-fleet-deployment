@@ -259,13 +259,14 @@ export default function LandingPage() {
               Why this exists
             </p>
             <h2 className="font-display text-3xl lg:text-4xl leading-tight font-medium mb-6">
-              Not a hackathon toy.
+              A working idea I&apos;m building toward.
             </h2>
             <p className="text-fleet-muted leading-relaxed">
-              I&apos;m building Orizon Robotics — custom AMRs with FOC-controlled actuators. This
-              ops layer is the workflow we&apos;ll run on every client deployment. Post-hackathon,
-              the same Band-connected agents receive ROS2 telemetry, trigger SLAM re-mapping, and
-              coordinate firmware updates across live fleets.
+              I&apos;m working toward Orizon Robotics — custom AMRs with FOC-controlled actuators.
+              This project is a working prototype: a training exercise and mental model for how I
+              want client deployments to flow — assess, configure, veto, launch — before the
+              hardware is ready. I&apos;m building the muscle memory now so the real ops layer is
+              smoother later.
             </p>
           </div>
         </div>
