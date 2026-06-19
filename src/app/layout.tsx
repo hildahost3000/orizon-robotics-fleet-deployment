@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Orizon Fleet Coordinator',
-    description: 'Multi-agent AMR deployment on Band — assess, configure, veto, launch.',
+    description: 'Multi-agent AMR deployment on Band — assess, configure, veto, launch. Team athenarocks.',
     type: 'website',
   },
 }

@@ -10,16 +10,14 @@
 
 ## The Problem
 
-**Robotics integrators** — companies deploying autonomous mobile robot (AMR) fleets into factories, warehouses, and logistics centers — face a broken coordination process:
+**Robotics companies selling AMR fleets B2B** — each client deployment is different: floor layout, facility size, robot series, safety constraints. Today that handover still runs manually:
 
 ```
-Sales closes deal → Deployment lead receives handoff via email →
-Manual site assessment (spreadsheets) → Robot selection (tribal knowledge) →
-Safety review (PDF back-and-forth) → Client sign-off (more email) →
-Launch package assembly (copy-paste across tools)
+Engineer on site → Manual site assessment → Robot selection for this floor →
+Safety review (checklists, back-and-forth) → Client sign-off → Launch package assembly
 ```
 
-**Result:** 5-15 business days of sequential handoffs with context lost at every step. A single missed constraint — wrong payload rating, inadequate Wi-Fi coverage in an operational zone, charger placement that doesn't account for traffic patterns — delays go-live by weeks and costs $800+/day per idle robot.
+**Result:** Days of manual handoffs with context lost at every step. AMRs aren't cheap — idle robots waiting for go-live is the last thing clients want. A single missed constraint — wrong payload rating, inadequate Wi-Fi coverage, bad charger placement — can delay launch by weeks.
 
 **We've lived this pain.** Every robotics deployment stalls because site assessment, fleet configuration, safety compliance, and launch approval happen in silos. There's no single coordination layer where these specialized functions can challenge each other, enforce constraints, and produce auditable artifacts.
 
@@ -235,6 +233,8 @@ This project uses authentic robotics and fleet operations terminology:
 ## Hackathon
 
 **Band of Agents Hackathon** — Track 1: Internal Enterprise Workflows (with Track 3 safety gate flavor)
+
+**Team:** athenarocks
 
 - **Band** — Agent coordination mesh (multi-agent rooms, @mention routing, veto loops)
 - **Featherless AI** — Serverless inference for 4 different open-source models

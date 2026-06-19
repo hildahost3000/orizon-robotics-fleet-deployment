@@ -71,7 +71,7 @@ export default function LandingPage() {
       {/* Hero — mapo-style stacked headline */}
       <section className="px-6 lg:px-16 pt-20 pb-24 lg:pt-28 lg:pb-32 border-b border-fleet-ink/10">
         <p className="text-xs font-medium tracking-[0.18em] uppercase text-fleet-accent mb-8">
-          Band of Agents Hackathon · Track 1
+          Band of Agents Hackathon · Track 1 · athenarocks
         </p>
         <h1 className="font-display text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.95] tracking-tight font-medium max-w-4xl">
           Deploy robots
@@ -81,7 +81,7 @@ export default function LandingPage() {
           the thread.
         </h1>
         <p className="mt-10 text-lg text-fleet-muted max-w-xl leading-relaxed">
-          Orizon Fleet Coordinator is a deployment desk for AMR integrators. Four agents — each a
+          Orizon Fleet Coordinator is a deployment desk for our AMR fleet. Four agents — each a
           different framework, each a different open-source model on Featherless — coordinate in
           Band until the fleet config is safe enough to launch.
         </p>
@@ -110,25 +110,25 @@ export default function LandingPage() {
             The problem
           </p>
           <h2 className="font-display text-3xl lg:text-4xl leading-tight font-medium mb-6">
-            Every deployment stalls in email.
+            Every client deployment is different.
           </h2>
           <p className="text-fleet-muted leading-relaxed mb-8">
-            Site assessment, robot selection, safety review, client sign-off — each step lives in a
-            different inbox. Context gets lost. One missed Wi-Fi dead zone or ramp gradient can
-            delay go-live by weeks.
+            We build AMRs and sell them B2B — clients buy fleets, not single units. Every factory
+            has a different layout, size, and robot series. Today that handover is manual, step by
+            step, and mistakes happen.
           </p>
           <ul className="space-y-3 text-sm text-fleet-muted">
             <li className="flex gap-3">
               <span className="text-fleet-accent mt-1">—</span>
-              5–15 business days of sequential handoffs
+              B2B fleet sales — unique floor plan and config every time
             </li>
             <li className="flex gap-3">
               <span className="text-fleet-accent mt-1">—</span>
-              $800+/day per idle robot when launch slips
+              Days of manual site assessment, fleet config, and safety review
             </li>
             <li className="flex gap-3">
               <span className="text-fleet-accent mt-1">—</span>
-              No independent safety auditor in the loop
+              Idle robots waiting for go-live — AMRs aren&apos;t cheap
             </li>
           </ul>
         </div>
@@ -140,13 +140,13 @@ export default function LandingPage() {
             A coordination room, not another dashboard.
           </h2>
           <p className="text-fleet-muted leading-relaxed mb-8">
-            You trigger a deployment. Four agents join a Band room, share structured JSON
-            artifacts, and run a safety veto loop until ISO 3691-4 checks pass. Ops Manager
-            approves the final package before Day 1.
+            Our engineer, on site, triggers a deployment. Four agents join a Band room, share
+            structured JSON artifacts, and run a safety veto loop until ISO 3691-4 checks pass. A
+            human approves the final package before Day 1.
           </p>
           <p className="font-display text-xl italic text-fleet-ink/80 border-l-2 border-fleet-accent pl-5">
-            Sales closes the deal. Then deployment lead gets a PDF, three spreadsheets, and a
-            prayer. We fixed that.
+            Same product. Different floor every time. We&apos;re replacing the manual handover with
+            a coordination room.
           </p>
         </div>
       </section>
@@ -290,7 +290,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="px-6 lg:px-16 py-8 border-t border-fleet-ink/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-fleet-muted">
-        <span className="font-display tracking-wide text-fleet-accent">orizon</span>
+        <span className="font-display tracking-wide text-fleet-accent">orizon · athenarocks</span>
         <div className="flex items-center gap-6">
           <a href="https://band.ai" target="_blank" rel="noopener noreferrer" className="hover:text-fleet-ink transition-colors">
             Band
